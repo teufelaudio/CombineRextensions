@@ -46,20 +46,20 @@ public protocol PoppableAction {
 
 // MARK: - NavigationTree Support
 extension NavigationLink {
-    public init?<Action: PoppableAction, State, Producer: ViewProducer>(
+    public init?<Action: PoppableAction, State, ViewProducerContext: Hashable>(
         store: ObservableViewModel<Action, State>,
-        path: KeyPath<State, Producer.Route?>,
+        path: KeyPath<State, ViewProducerContext?>,
         file: String = #file,
         function: String = #function,
         line: UInt = #line,
         info: String? = nil,
-        producer: Producer)
-        where Destination == Producer.Content, Label == EmptyView {
+        producer: ViewProducer<ViewProducerContext, Destination>)
+        where Label == EmptyView {
             // Don't even return the NavigationLink when we have no Screen to show.
             // That way, we do not unnecessarily produce views via ViewProducer.
             guard let secondScreen = store.state[keyPath: path] else { return nil }
             self.init(
-                destination: producer.view(for: secondScreen),
+                destination: producer.view(secondScreen),
                 tag: secondScreen,
                 selection: store.binding[path] { value in
                     // We want to dispatch the pop action here in case the user
