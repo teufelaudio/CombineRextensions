@@ -67,7 +67,7 @@ extension ForEach where Content: View {
                     action: { rowAction in
                         identifiableRowToCollectionAction(row.id, rowAction)
                     },
-                    state: { state in
+                    state: { _ in
                         row
                     }
                 ).asObservableViewModel(initialState: row, emitsValue: .whenDifferent)
@@ -98,7 +98,7 @@ extension ForEach where Content: View {
                     action: { rowAction in
                         identifiableRowToCollectionAction(row[keyPath: id], rowAction)
                     },
-                    state: { state in
+                    state: { _ in
                         row
                     }
                 ).asObservableViewModel(initialState: row, emitsValue: .whenDifferent)
@@ -119,14 +119,17 @@ extension ForEach where Content: View {
         collection: KeyPath<State, Subdata>,
         indexedRowToCollectionAction: @escaping (Subdata.Index, RowAction) -> Action?,
         @ViewBuilder content: @escaping (ObservableViewModel<RowAction, Subdata.Element>) -> Content
-    ) where Data == [ObservableViewModel<RowAction, Subdata.Element>], Subdata.Element: Identifiable, Subdata.Element: Equatable, Subdata.Element.ID == ID {
+    ) where Data == [ObservableViewModel<RowAction, Subdata.Element>],
+            Subdata.Element: Identifiable,
+            Subdata.Element: Equatable,
+            Subdata.Element.ID == ID {
         self.init(
             Array(zip(viewModel.state[keyPath: collection].indices, viewModel.state[keyPath: collection])).map { index, row in
                 viewModel.projection(
                     action: { rowAction in
                         indexedRowToCollectionAction(index, rowAction)
                     },
-                    state: { state in
+                    state: { _ in
                         row
                     }
                 ).asObservableViewModel(initialState: row, emitsValue: .whenDifferent)
@@ -157,7 +160,7 @@ extension ForEach where Content: View {
                     action: { rowAction in
                         indexedRowToCollectionAction(index, rowAction)
                     },
-                    state: { state in
+                    state: { _ in
                         row
                     }
                 ).asObservableViewModel(initialState: row, emitsValue: .whenDifferent)
@@ -166,6 +169,4 @@ extension ForEach where Content: View {
             content: content
         )
     }
-
 }
-
