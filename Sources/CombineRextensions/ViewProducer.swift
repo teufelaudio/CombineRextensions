@@ -47,3 +47,17 @@ extension ViewProducer where ProducedView == EmptyView {
         .init { _ in EmptyView() }
     }
 }
+
+extension ViewProducer where ProducedView == AnyView {
+    public static func pure() -> ViewProducer {
+        .init { _ in AnyView(EmptyView()) }
+    }
+}
+
+#if DEBUG
+extension ViewProducer {
+    public static var crash: ViewProducer {
+        . init { _ in fatalError("Debug ViewProducer crash") }
+    }
+}
+#endif
