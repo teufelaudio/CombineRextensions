@@ -21,7 +21,8 @@ extension NavigationLink {
         function: String = #function,
         line: UInt = #line,
         info: String? = nil,
-        dispatchActionOnTap: @escaping (RowTag) -> Action,
+        onOpen: @escaping (RowTag) -> Action,
+        onClose: @escaping () -> Action,
         @ViewBuilder label: @escaping () -> Label
     ) {
         self.init(
@@ -32,7 +33,11 @@ extension NavigationLink {
                     viewModel.state[keyPath: pathToSelectedRowTag]
                 },
                 set: { row in
-                    viewModel.dispatch(dispatchActionOnTap(row ?? rowTag), from: .init(file: file, function: function, line: line, info: info))
+                    if row != nil && row == rowTag {
+                        viewModel.dispatch(onOpen(rowTag), from: .init(file: file, function: function, line: line, info: info))
+                    } else if row == nil {
+                        viewModel.dispatch(onClose(), from: .init(file: file, function: function, line: line, info: info))
+                    }
                 }),
             label: label)
     }
@@ -61,7 +66,7 @@ extension NavigationLink {
             self.init(
                 destination: producer.view(secondScreen),
                 tag: secondScreen,
-                selection: store.binding[path] { value in
+                selection: Binding<ViewProducerContext?>.store(store, state: path, file: file, line: line, info: info) { value in
                     // We want to dispatch the pop action here in case the user
                     // pops the detail screen so that the RouterReducer knows
                     // to manipulate the NavigationTree.
