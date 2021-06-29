@@ -66,7 +66,7 @@ extension NavigationLink {
             self.init(
                 destination: producer.view(secondScreen),
                 tag: secondScreen,
-                selection: Binding<ViewProducerContext?>.store(store, state: path, file: file, line: line, info: info) { value in
+                selection: Binding<ViewProducerContext?>.store(store, state: path, file: file, function: function, line: line, info: info) { value in
                     // We want to dispatch the pop action here in case the user
                     // pops the detail screen so that the RouterReducer knows
                     // to manipulate the NavigationTree.
