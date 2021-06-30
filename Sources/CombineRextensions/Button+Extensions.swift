@@ -6,8 +6,8 @@
 //  Copyright © 2019 Lautsprecher Teufel GmbH. All rights reserved.
 //
 
-import Foundation
 import CombineRex
+import Foundation
 import SwiftRex
 import SwiftUI
 
