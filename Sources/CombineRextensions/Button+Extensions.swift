@@ -6,6 +6,7 @@
 //  Copyright © 2019 Lautsprecher Teufel GmbH. All rights reserved.
 //
 
+import CombineRex
 import Foundation
 import SwiftRex
 import SwiftUI
@@ -43,14 +44,14 @@ extension Button where Label == Text {
 extension Button where Label == Text {
     public init<ActionType, StateType>(localizedString: KeyPath<StateType, String>,
                                        viewModel: ObservableViewModel<ActionType, StateType>,
-                                       action: @escaping @autoclosure () -> S.ActionType,
+                                       action: @escaping @autoclosure () -> ActionType,
                                        file: String = #file,
                                        function: String = #function,
                                        line: UInt = #line,
                                        info: String? = nil) {
         let actionSource = ActionSource(file: file, function: function, line: line, info: info)
         self.init(viewModel.state[keyPath: localizedString], action: {
-            store.dispatch(action(), from: actionSource)
+            viewModel.dispatch(action(), from: actionSource)
         })
     }
 }
