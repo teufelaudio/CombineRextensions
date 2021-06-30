@@ -40,6 +40,21 @@ extension Button where Label == Text {
     }
 }
 
+extension Button where Label == Text {
+    public init<S: StoreType>(localizedString: String,
+                              store: S,
+                              action: @escaping @autoclosure () -> S.ActionType,
+                              file: String = #file,
+                              function: String = #function,
+                              line: UInt = #line,
+                              info: String? = nil) {
+        let actionSource = ActionSource(file: file, function: function, line: line, info: info)
+        self.init(localizedString, action: {
+            store.dispatch(action(), from: actionSource)
+        })
+    }
+}
+
 extension Button {
     public init<S: StoreType>(store: S,
                               action: @escaping @autoclosure () -> S.ActionType,
