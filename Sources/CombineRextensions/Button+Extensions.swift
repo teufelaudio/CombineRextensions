@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CombineRex
 import SwiftRex
 import SwiftUI
 
