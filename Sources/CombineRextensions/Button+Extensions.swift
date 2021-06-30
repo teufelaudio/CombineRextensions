@@ -41,15 +41,15 @@ extension Button where Label == Text {
 }
 
 extension Button where Label == Text {
-    public init<S: StoreType>(localizedString: KeyPath<S.StateType, String>,
-                              store: S,
+    public init<ActionType, StateType>(localizedString: KeyPath<StateType, String>,
+                              viewModel: ObservableViewModel<ActionType, StateType>,
                               action: @escaping @autoclosure () -> S.ActionType,
                               file: String = #file,
                               function: String = #function,
                               line: UInt = #line,
                               info: String? = nil) {
         let actionSource = ActionSource(file: file, function: function, line: line, info: info)
-        self.init(store.state[keyPath: localizedString], action: {
+        self.init(viewModel.state[keyPath: localizedString], action: {
             store.dispatch(action(), from: actionSource)
         })
     }
