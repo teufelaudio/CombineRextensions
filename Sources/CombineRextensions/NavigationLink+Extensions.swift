@@ -22,7 +22,7 @@ extension NavigationLink {
         line: UInt = #line,
         info: String? = nil,
         onOpen: @escaping (RowTag) -> Action,
-        onClose: @escaping () -> Action,
+        onClose: @autoclosure @escaping () -> Action,
         @ViewBuilder label: @escaping () -> Label
     ) {
         self.init(
