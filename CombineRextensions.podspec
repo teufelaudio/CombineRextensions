@@ -1,12 +1,12 @@
 
 Pod::Spec.new do |s|
     s.name             = 'CombineRextensions'
-    s.version          = '0.1.6'
+    s.version          = '0.1.7'
     s.summary          = 'Useful extensions for using CombineRex in SwiftUI, such as bindings, Views and gestures'
   
     s.homepage         = 'https://github.com/teufelaudio/CombineRextensions'
-    s.license          = { :type => 'Apache', :text => '© 2021 Luiz Barbosa' }
-    s.author           = { 'Luiz Barbosa' => 'swiftrex@developercity.de' }
+    s.license          = { :type => 'Apache', :text => '© 2021 Lautsprecher Teufel' }
+    s.author           = { 'Lautsprecher Teufel' => 'apps@teufel.de' }
     s.source           = { :git => 'https://github.com/teufelaudio/CombineRextensions.git', :tag => "v#{s.version}" }
   
     s.ios.deployment_target       = '13.0'
