@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
   
     s.source_files = 'Sources/**/*.swift'
   
-    s.dependency 'CombineRex', '~> 0.8.6'
+    s.dependency 'CombineRex', '~> 0.8.8'
   end
