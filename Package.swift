@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:6.0
 import PackageDescription
 
 let package = Package(
@@ -9,7 +9,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "SwiftRex", url: "https://github.com/SwiftRex/SwiftRex.git", from: "0.8.8"),
-        .package(name: "UIExtensions", url: "https://github.com/TeufelAudio/UIExtensions.git", from: "1.2.0")
+        .package(name: "UIExtensions", url: "https://github.com/TeufelAudio/UIExtensions.git", from: "2.0.0")
     ],
     targets: [
         .target(name: "CombineRextensions",

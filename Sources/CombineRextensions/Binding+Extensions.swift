@@ -6,7 +6,7 @@
 //  Copyright © 2019 Lautsprecher Teufel GmbH. All rights reserved.
 //
 
-import CombineRex
+@preconcurrency import CombineRex
 import Foundation
 import SwiftRex
 import SwiftUI
@@ -16,6 +16,7 @@ public enum ChangeModifier {
     case notAnimated
 }
 
+@MainActor
 extension Binding {
     public static func store<Action, State>(
         _ store: ObservableViewModel<Action, State>,
@@ -75,6 +76,7 @@ extension Binding {
         )
     }
 
+    @MainActor
     public static func caching(
         get: @escaping () -> Value,
         set: @escaping (Value) -> Void) -> Binding<Value> {
