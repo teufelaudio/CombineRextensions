@@ -20,7 +20,7 @@ public struct BindableViewModel<Action, State> {
 
     /// Creates a lens binding to the viewModel, dispatching the action returned by the closure to the store on `set`,
     /// The  returned binding includes a local cache that will return the `set` value until the store updates.
-    public subscript<Value>(
+    @MainActor public subscript<Value>(
         path: KeyPath<State, Value>,
         changeModifier: ChangeModifier = .notAnimated,
         file: String = #file,
