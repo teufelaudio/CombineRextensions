@@ -10,6 +10,7 @@ import SwiftUI
 
 /// Defines a function mapping some state context to a View.
 /// Can be used by ViewModels to map navigation anchor points to their views.
+@MainActor
 public struct ViewProducer<Context, ProducedView: View> {
     /// Runs the function that produces a View from the state context
     public let run: (Context) -> ProducedView
