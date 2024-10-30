@@ -11,6 +11,7 @@ import SwiftRex
 import SwiftUI
 
 extension Toggle where Label: View {
+    @MainActor
     public init<Action, State>(viewModel: ObservableViewModel<Action, State>,
                                state: KeyPath<State, Bool>,
                                file: String = #file,
@@ -24,6 +25,7 @@ extension Toggle where Label: View {
 }
 
 extension Toggle where Label == Text {
+    @MainActor
     public init<Action, State>(
         _ titleKey: LocalizedStringKey,
         viewModel: ObservableViewModel<Action, State>,
@@ -36,6 +38,7 @@ extension Toggle where Label == Text {
         self.init(titleKey, isOn: .store(viewModel, state: state, file: file, function: function, line: line, info: info, onChange: onToggle))
     }
 
+    @MainActor
     public init<Action, State, StringType: StringProtocol>(
         _ title: StringType,
         viewModel: ObservableViewModel<Action, State>,

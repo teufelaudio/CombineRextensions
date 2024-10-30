@@ -12,6 +12,7 @@ import SwiftRex
 import SwiftUI
 
 extension NavigationLink {
+    @MainActor
     public init<Action, State, RowTag: Hashable>(
         destination: Destination,
         rowTag: RowTag,
@@ -51,6 +52,7 @@ public protocol PoppableAction {
 
 // MARK: - NavigationTree Support
 extension NavigationLink {
+    @MainActor
     public init?<Action: PoppableAction, State, ViewProducerContext: Hashable>(
         store: ObservableViewModel<Action, State>,
         path: KeyPath<State, ViewProducerContext?>,
