@@ -48,6 +48,7 @@ extension Picker where Label == Text {
     }
 
     /// Allows to create own views for each option. User is responsible for setting the tag.
+    @MainActor
     public init<Action, State, V: View>(
         localizedString: String,
         viewModel: ObservableViewModel<Action, State>,
@@ -80,6 +81,7 @@ extension Picker where Label == Text {
     }
 
     /// Creates simple text views for the picker options.
+    @MainActor
     public init<Action, State>(
         localizedString: String,
         viewModel: ObservableViewModel<Action, State>,

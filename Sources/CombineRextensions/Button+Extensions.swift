@@ -12,6 +12,7 @@ import SwiftRex
 import SwiftUI
 
 extension Button where Label == Text {
+    @MainActor
     public init<S: StoreType>(store: S,
                               verbatim: (S) -> String,
                               action: @escaping @autoclosure () -> S.ActionType,
@@ -27,6 +28,7 @@ extension Button where Label == Text {
 }
 
 extension Button where Label == Text {
+    @MainActor
     public init<S: StoreType>(store: S,
                               localizableKey: (S) -> String,
                               action: @escaping @autoclosure () -> S.ActionType,
@@ -42,6 +44,7 @@ extension Button where Label == Text {
 }
 
 extension Button where Label == Text {
+    @MainActor
     public init<ActionType, StateType>(localizedString: KeyPath<StateType, String>,
                                        viewModel: ObservableViewModel<ActionType, StateType>,
                                        action: @escaping @autoclosure () -> ActionType,
@@ -57,6 +60,7 @@ extension Button where Label == Text {
 }
 
 extension Button {
+    @MainActor
     public init<S: StoreType>(store: S,
                               action: @escaping @autoclosure () -> S.ActionType,
                               file: String = #file,
