@@ -9,7 +9,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/SwiftRex/SwiftRex.git", from: "0.8.8"),
-        .package(url: "https://github.com/TeufelAudio/UIExtensions.git", from: "3.0.0")
+        .package(url: "https://github.com/TeufelAudio/UIExtensions.git", from: "4.0.0")
     ],
     targets: [
         .target(name: "CombineRextensions",
